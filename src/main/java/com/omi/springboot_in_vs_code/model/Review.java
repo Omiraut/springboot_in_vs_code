@@ -1,5 +1,7 @@
 package com.omi.springboot_in_vs_code.model;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -23,4 +25,5 @@ public class Review {
     @ManyToOne
     @JoinColumn(name = "userId")
     private Users user;
+    private LocalDateTime createdAt;
 }
