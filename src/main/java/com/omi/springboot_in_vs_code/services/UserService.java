@@ -22,7 +22,7 @@ public class UserService {
         return userRepository.saveAll(users);
     }
 
-    public Optional<Users> getUserById(int id) {
+    public Optional<Users> getUserById(Long id) {
         return userRepository.findById(id);
     }
 
@@ -31,10 +31,12 @@ public class UserService {
     }
 
     public Users updateUser(Users user) {
-        Optional<Users> optUser = userRepository.findById(user.getId());
+        Optional<Users> optUser = userRepository.findById(user.getUserId());
         if (optUser.isPresent()) {
             Users oldUser = optUser.get();
-            oldUser.setAddress(user.getAddress());
+            oldUser.setEmail(user.getEmail());
+            oldUser.setPassword(user.getPassword());
+            oldUser.setUsername(user.getUsername());
             oldUser.setName(user.getName());
             return userRepository.save(oldUser);
 
@@ -42,7 +44,7 @@ public class UserService {
             return new Users();
     }
 
-    public String deleteUser(int id) {
+    public String deleteUser(Long id) {
         Optional<Users> optuser = userRepository.findById(id);
         if (optuser.isPresent()) {
             userRepository.deleteById(id);

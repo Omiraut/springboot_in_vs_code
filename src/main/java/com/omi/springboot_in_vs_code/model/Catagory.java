@@ -8,18 +8,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
-public class Users {
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Catagory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
-    private String name;
-    private String username;
-    private String password;
-    private String email;
-    private boolean active;
+    private Long catagoryId;
+    private String catagoryName;
 
 }
