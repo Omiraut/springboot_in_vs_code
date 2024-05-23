@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.omi.springboot_in_vs_code.dto.LoginDTO;
+
 import com.omi.springboot_in_vs_code.model.Users;
 import com.omi.springboot_in_vs_code.repository.UserRepository;
 
@@ -51,6 +53,23 @@ public class UserService {
             return "User Deleted Successfully";
         } else {
             return "No User found With Id No " + id;
+        }
+    }
+
+    public Users doLogin(LoginDTO user) {
+        if (user == null) {
+            System.err.println("user is empty");
+            return new Users();
+        } else {
+            Optional<Users> optUser = userRepository.findByUsernameAndPassword(user.getUsername(), user.getPassword());
+            if (optUser.isPresent()) {
+                Users newUser = optUser.get();
+                System.out.println("Mil gaya User iski maka *****");
+                return newUser;
+            } else {
+                System.out.println("User Not Found");
+                return new Users();
+            }
         }
     }
 
